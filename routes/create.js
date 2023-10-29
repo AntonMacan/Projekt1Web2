@@ -140,9 +140,7 @@ router.post('/', requiresAuth(), async function(req,res,next){
                } else {
                  console.log("Added: "+result.rowCount);
                }
-            });
-
-            const generatedString = generateRandomString(10);
+               const generatedString = generateRandomString(10);
             console.log(generatedString)
             
             const insertLink = {
@@ -156,16 +154,20 @@ router.post('/', requiresAuth(), async function(req,res,next){
                } else {
                  console.log('Query results:', results.rows);
                }
+               const str = '/league/'+generatedString
+               console.log('/league/'+generatedString)
+               console.log('Owner'+owner+'Tournament created with the following data: Name:'+ tournamentName + ' Participants: '+ participants + ' Points for Win: '+ winPoints + ' Points for Draw: '+ drawPoints + ' Points for Loss: '+ lossPoints);
+               res.redirect(str)
+
              });
-             const str = '/league/'+generatedString
-             console.log('/league/'+generatedString)
+            });
+
+            
              
-             res.redirect(str)
          });
       });
 
-      console.log('Owner'+owner+'Tournament created with the following data: Name:'+ tournamentName + ' Participants: '+ participants + ' Points for Win: '+ winPoints + ' Points for Draw: '+ drawPoints + ' Points for Loss: '+ lossPoints);
-      
+ 
       
     }else{
       console.log('League not created!');
