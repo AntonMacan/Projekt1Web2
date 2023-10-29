@@ -169,6 +169,10 @@ router.post('/', requiresAuth(), async function(req,res,next){
       
     }else{
       console.log('League not created!');
+      res.render('league', {
+        title: 'Auth0 Webapp sample Nodejs',
+        isAuthenticated: req.oidc.isAuthenticated()
+      });
    }
 
    });
@@ -177,10 +181,7 @@ router.post('/', requiresAuth(), async function(req,res,next){
    
  
    
-  res.render('league', {
-    title: 'Auth0 Webapp sample Nodejs',
-    isAuthenticated: req.oidc.isAuthenticated()
-  });
+  
 });
 
 
