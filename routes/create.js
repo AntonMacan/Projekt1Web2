@@ -148,7 +148,8 @@ router.post('/', requiresAuth(), async function(req,res,next){
                values: [id,generatedString]
              }
 
-             pool.query(insertLink, (error, results) => {
+             pool.query(insertLink, async (error, results) => {
+              console.log(insertLink);
                if (error) {
                  console.error('Error executing query:', error);
                } else {

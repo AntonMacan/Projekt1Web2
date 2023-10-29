@@ -106,21 +106,26 @@ router.get('/:link', (req,res) =>{
                console.log(dict["round"])
                games.push(dict)
             })
+            let nick = ""
+            if(req.oidc.user.nickname !=undefined){
+               nick = req.oidc.user.nickname
+            }
             const query4 = {
                text: 'SELECT * FROM users WHERE username = $1',
-               values: [req.oidc.user.nickname]
+               values: [nick]
              };
              pool.query(query4, (error, results) => {
+               let isAuth = false;
                if (error) {
                  console.error('Error executing query:', error);
                } else {
                  console.log('Query results:', results.rows);
+                 userID = results.rows[0].id;
+                 if(result.owner == userID){
+                    isAuth = true;
+                 }
                }
-               userID = results.rows[0].id;
-               let isAuth = false;
-               if(result.owner == userID){
-                  isAuth = true;
-               }
+               
 
                const lboard = Object.entries(leaderboard).map(([team, attributes]) => ({ team, ...attributes }));
                lboard.sort((a, b) => {
