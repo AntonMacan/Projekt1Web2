@@ -120,9 +120,11 @@ router.get('/:link', (req,res) =>{
                  console.error('Error executing query:', error);
                } else {
                  console.log('Query results:', results.rows);
-                 userID = results.rows[0].id;
-                 if(result.owner == userID){
-                    isAuth = true;
+                 if(results.rowCount > 0){
+                  userID = results.rows[0].id;
+                  if(result.owner == userID){
+                     isAuth = true;
+                  }
                  }
                }
                
