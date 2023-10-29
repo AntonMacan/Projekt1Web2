@@ -1,0 +1,9 @@
+<%- include('partials/header') -%>
+
+<h1 class="text-4xl">Welcome to the leagues web app</h1>
+
+<% if (locals.isAuthenticated) { %>
+    <p> Welcome user <%= user.nickname%></p>
+<% } else { %>
+    <p>You are not logged in. <a href="/login" class="underline">Login</a>.</p>
+<% } %>

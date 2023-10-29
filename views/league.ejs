@@ -1,0 +1,119 @@
+<%- include('partials/header') -%>
+<head>
+   <title>Styling Form Inputs</title>
+   <style>
+       form input[type="submit"] {
+            background-color: #007BFF; /* Change to your desired background color */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+       form {
+           display: flex;
+           flex-direction: row;
+           align-items: center;
+       }
+
+       form div {
+           display: flex;
+           margin-right: 10px;
+       }
+
+       label {
+           margin-right: 5px;
+       }
+
+       input {
+           margin-right: 10px;
+       }
+
+       h1 {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+   </style>
+</head>
+<body>
+   <h1 style="font-size: large;"><%= title %></h1>
+   <% if(isAuth) {
+       %>  
+       <% games.forEach(game => {
+           %>
+           <h1>ROUND <%=game['round']%></h1>
+           <form method="POST" action="/league/<%= link %>?round=<%=game['round']%>&team1=<%=game['id1']%>&team2=<%=game['id2']%>&league=<%=leagueId%>">
+               <input type="submit" value="Update Score">
+               <div>
+                   <label for="team1"><%= game['pl1']%></label>
+                   <input type="number" id="team1" name="team1Goals" value="<%= game['goals1']%>" min="0">
+               </div>
+               <div>
+                   <label for="team2"><%= game['pl2']%></label>
+                   <input type="number" id="team2" name="team2Goals" value="<%= game['goals2']%>" min="0">
+               </div>
+           </form>
+           <%
+           if(!game['played']){
+            %> <h2>NOT PLAYED YET</h2> <%
+           }
+       });
+       %>
+       <%
+   } else {
+       %> <% games.forEach(game => {
+         %>
+         <h1>ROUND <%=game['round']%></h1>
+             <div>
+                 <label for="team1"><%= game['pl1']%></label>
+                 <a ><%= game['goals1']%></a>
+             </div>
+             <div>
+                 <label for="team2"><%= game['pl2']%></label>
+                 <a ><%= game['goals2']%></a>
+             </div>
+         <%
+     });
+     %> <%
+   }
+   %>
+   <h1>Leaderboard</h1>
+   <table>
+       <tr>
+           <th>Team</th>
+           <th>Points</th>
+           <th>Goal Difference</th>
+           <th>Games Played</th>
+       </tr>
+       <% leaderboard.forEach((team) => { %>
+           <tr>
+               <td><%= team.team %></td>
+               <td><%= team.points %></td>
+               <td><%= team.gd %></td>
+               <td><%= team.played %></td>
+           </tr>
+       <% }); %>
+   </table>
+</body>

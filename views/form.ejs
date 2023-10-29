@@ -1,0 +1,80 @@
+<%- include('partials/header') -%>
+<head>
+   <title>Create a New League</title>
+   <style>
+       body {
+           font-family: Arial, sans-serif;
+           background-color: #f2f2f2;
+           margin: 0;
+           padding: 0;
+       }
+
+       h2 {
+           background-color: #2d3748;
+           color: #fff;
+           padding: 10px;
+       }
+
+       form {
+           max-width: 400px;
+           margin: 0 auto;
+           padding: 20px;
+           background-color: #fff;
+           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+           border-radius: 5px;
+       }
+
+       label {
+           display: block;
+           margin-bottom: 5px;
+       }
+
+       input[type="text"],
+       input[type="number"] {
+           width: 100%;
+           padding: 10px;
+           margin-bottom: 15px;
+           border: 1px solid #ccc;
+           border-radius: 5px;
+       }
+
+       input[type="submit"] {
+           background-color: #2d3748;
+           color: #fff;
+           padding: 10px 20px;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+       }
+
+       input[type="submit"]:hover {
+           background-color: #555;
+           padding: 10px 20px;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+       }
+   </style>
+   <meta charset="UTF-8">
+</head>
+<body>
+   <h2 style="text-align: center;">Create a new league</h2>
+   <form action="/create" method="post">
+       <label style="text-align: center;" for="tournamentName">League Name:</label>
+       <input type="text" id="tournamentName" name="tournamentName" required><br><br>
+
+       <label style="text-align: center;" for="participants">List of Participants (comma-separated):</label>
+       <input type="text" id="participants" name="participants" required><br><br>
+
+       <label style="text-align: center;" for="winPoints">Points for a Win:</label>
+       <input type="number" id="winPoints" name="winPoints" required><br><br>
+
+       <label style="text-align: center;" for="drawPoints">Points for a Draw:</label>
+       <input type="number" id="drawPoints" name="drawPoints" required><br><br>
+
+       <label style="text-align: center;" for="lossPoints">Points for a Loss:</label>
+       <input type="number" id="lossPoints" name="lossPoints" required><br><br>
+
+       <input type="submit" value="Create league">
+   </form>
+</body>
