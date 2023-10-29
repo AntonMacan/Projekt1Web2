@@ -107,7 +107,7 @@ router.get('/:link', (req,res) =>{
                games.push(dict)
             })
             let nick = ""
-            if(req.oidc.user.nickname !=undefined){
+            if(req.oidc.user !=undefined){
                nick = req.oidc.user.nickname
             }
             const query4 = {
