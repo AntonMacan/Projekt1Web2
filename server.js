@@ -23,7 +23,7 @@ const port = process.env.PORT || 3000;
 const config = {
   authRequired: false,
   auth0Logout: true,
-  bbaseURL: 'https://projekt1web2antonmacan.onrender.com',
+  baseURL: 'https://projekt1web2antonmacan.onrender.com',
 };
 
 
